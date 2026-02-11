@@ -2,6 +2,9 @@
 
 Add-on for [Virtual Media Folders](https://wordpress.org/plugins/virtual-media-folders/) that lets you export folders (or subtrees) as ZIP archives with optional CSV manifests.
 
+<img width="1408" height="713" alt="Screenshot Folder Exporter" src="https://github.com/user-attachments/assets/1cc2957b-ab90-4eb4-af7e-d10f83fa98ea" />
+
+
 ## Features
 
 - **ZIP export** — export any folder as a downloadable ZIP archive with the original folder hierarchy preserved.
