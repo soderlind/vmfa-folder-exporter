@@ -1,0 +1,145 @@
+/**
+ * VMFA Folder Exporter — Admin styles.
+ *
+ * @package VmfaFolderExporter
+ */
+
+.vmfa-folder-exporter {
+	max-width: 800px;
+
+	h2 {
+		margin-top: 1.5em;
+		margin-bottom: 0.5em;
+	}
+
+	// Stats card.
+	&__stats {
+		display: flex;
+		gap: 16px;
+		margin-bottom: 20px;
+	}
+
+	&__stat-card {
+		background: #fff;
+		border: 1px solid #c3c4c7;
+		border-radius: 4px;
+		padding: 16px 24px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		min-width: 120px;
+	}
+
+	&__stat-value {
+		font-size: 28px;
+		font-weight: 600;
+		color: #1d2327;
+		line-height: 1.2;
+	}
+
+	&__stat-label {
+		font-size: 13px;
+		color: #50575e;
+		margin-top: 4px;
+	}
+
+	// Export panel.
+	&__export-panel {
+		background: #fff;
+		border: 1px solid #c3c4c7;
+		border-radius: 4px;
+		padding: 20px 24px;
+	}
+
+	&__folder-picker {
+		margin-bottom: 16px;
+	}
+
+	&__options {
+		margin-bottom: 20px;
+
+		.components-checkbox-control {
+			margin-bottom: 8px;
+		}
+	}
+
+	&__export-button {
+		.components-notice {
+			margin-bottom: 12px;
+		}
+	}
+
+	// Progress.
+	&__progress {
+		margin-top: 16px;
+
+		&--complete {
+			.components-notice {
+				margin-bottom: 12px;
+			}
+		}
+	}
+
+	&__progress-bar {
+		height: 20px;
+		background: #dcdcde;
+		border-radius: 10px;
+		overflow: hidden;
+		margin-bottom: 8px;
+	}
+
+	&__progress-fill {
+		height: 100%;
+		background: #2271b1;
+		border-radius: 10px;
+		transition: width 0.3s ease;
+	}
+
+	&__progress-info {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 13px;
+		color: #50575e;
+	}
+
+	&__progress-actions {
+		display: flex;
+		gap: 8px;
+	}
+
+	// History.
+	&__history {
+		margin-top: 24px;
+	}
+
+	&__history-empty {
+		color: #50575e;
+		font-style: italic;
+	}
+
+	&__status {
+		display: inline-block;
+		padding: 2px 8px;
+		border-radius: 3px;
+		font-size: 12px;
+		font-weight: 500;
+		text-transform: capitalize;
+
+		&--complete {
+			background: #d1fae5;
+			color: #065f46;
+		}
+
+		&--processing,
+		&--pending {
+			background: #dbeafe;
+			color: #1e40af;
+		}
+
+		&--failed {
+			background: #fee2e2;
+			color: #991b1b;
+		}
+	}
+}

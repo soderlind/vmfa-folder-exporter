@@ -1,0 +1,9 @@
+{
+	"src/js/components/ExporterDashboard.jsx": "vmfa-folder-exporter-admin",
+	"src/js/components/FolderPicker.jsx": "vmfa-folder-exporter-admin",
+	"src/js/components/ExportOptions.jsx": "vmfa-folder-exporter-admin",
+	"src/js/components/ExportButton.jsx": "vmfa-folder-exporter-admin",
+	"src/js/components/ExportProgress.jsx": "vmfa-folder-exporter-admin",
+	"src/js/components/ExportHistory.jsx": "vmfa-folder-exporter-admin",
+	"src/js/components/StatsCard.jsx": "vmfa-folder-exporter-admin"
+}
