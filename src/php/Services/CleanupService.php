@@ -115,7 +115,10 @@ class CleanupService {
 
 		// Remove the export directory.
 		$upload_dir = wp_upload_dir();
-		$export_dir = $upload_dir[ 'basedir' ] . '/' . ExportService::EXPORT_DIR;
+		$default    = $upload_dir[ 'basedir' ] . '/' . ExportService::EXPORT_DIR;
+
+		/** This filter is documented in ExportService::get_export_dir(). */
+		$export_dir = apply_filters( 'vmfa_export_dir', $default );
 
 		if ( is_dir( $export_dir ) ) {
 			// Remove protection files.
