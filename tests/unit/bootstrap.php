@@ -39,13 +39,13 @@ if ( ! class_exists( 'WP_Error' ) ) {
 		}
 		public function get_error_code() {
 			$codes = array_keys( $this->errors );
-			return $codes[0] ?? '';
+			return $codes[ 0 ] ?? '';
 		}
 		public function get_error_message( $code = '' ) {
 			if ( ! $code ) {
 				$code = $this->get_error_code();
 			}
-			return $this->errors[ $code ][0] ?? '';
+			return $this->errors[ $code ][ 0 ] ?? '';
 		}
 	}
 }

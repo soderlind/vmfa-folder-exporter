@@ -3,7 +3,7 @@
  * Plugin Name:       Virtual Media Folders - Folder Exporter
  * Plugin URI:        https://github.com/soderlind/vmfa-folder-exporter
  * Description:       Export folders (or subtrees) as ZIP archives with optional CSV manifests. Add-on for Virtual Media Folders.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 6.8
  * Requires PHP:      8.3
  * Requires Plugins:  virtual-media-folders
@@ -24,7 +24,7 @@ namespace VmfaFolderExporter;
 defined( 'ABSPATH' ) || exit;
 
 // Plugin constants.
-define( 'VMFA_FOLDER_EXPORTER_VERSION', '1.0.0' );
+define( 'VMFA_FOLDER_EXPORTER_VERSION', '1.1.0' );
 define( 'VMFA_FOLDER_EXPORTER_FILE', __FILE__ );
 define( 'VMFA_FOLDER_EXPORTER_PATH', plugin_dir_path( __FILE__ ) );
 define( 'VMFA_FOLDER_EXPORTER_URL', plugin_dir_url( __FILE__ ) );
@@ -58,15 +58,15 @@ if ( ! function_exists( 'as_schedule_single_action' ) ) {
  */
 function init(): void {
 	// Update checker via GitHub releases.
-	if ( ! class_exists( \Soderlind\WordPress\GitHubUpdater::class ) ) {
+	if ( ! class_exists( \Soderlind\WordPress\GitHubUpdater::class) ) {
 		require_once __DIR__ . '/class-github-updater.php';
 	}
 	\Soderlind\WordPress\GitHubUpdater::init(
-		github_url:  'https://github.com/soderlind/vmfa-folder-exporter',
+		github_url: 'https://github.com/soderlind/vmfa-folder-exporter',
 		plugin_file: VMFA_FOLDER_EXPORTER_FILE,
 		plugin_slug: 'vmfa-folder-exporter',
-		name_regex:  '/vmfa-folder-exporter\.zip/',
-		branch:      'main',
+		name_regex: '/vmfa-folder-exporter\.zip/',
+		branch: 'main',
 	);
 
 	// Boot the plugin.

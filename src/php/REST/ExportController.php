@@ -70,12 +70,12 @@ class ExportController extends WP_REST_Controller {
 								return is_numeric( $value ) && (int) $value > 0;
 							},
 						),
-						'include_children'  => array(
+						'include_children' => array(
 							'type'              => 'boolean',
 							'default'           => true,
 							'sanitize_callback' => 'rest_sanitize_boolean',
 						),
-						'include_manifest'  => array(
+						'include_manifest' => array(
 							'type'              => 'boolean',
 							'default'           => true,
 							'sanitize_callback' => 'rest_sanitize_boolean',
@@ -206,7 +206,7 @@ class ExportController extends WP_REST_Controller {
 		}
 
 		// Verify ownership.
-		if ( (int) $export['user_id'] !== get_current_user_id() && ! current_user_can( 'manage_options' ) ) {
+		if ( (int) $export[ 'user_id' ] !== get_current_user_id() && ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
 				__( 'You do not have permission to view this export.', 'vmfa-folder-exporter' ),
@@ -216,7 +216,7 @@ class ExportController extends WP_REST_Controller {
 
 		// Don't expose the server file path in the response.
 		$response = $export;
-		unset( $response['file_path'] );
+		unset( $response[ 'file_path' ] );
 
 		return new WP_REST_Response( $response );
 	}
@@ -230,17 +230,17 @@ class ExportController extends WP_REST_Controller {
 	public function list_exports( WP_REST_Request $request ): WP_REST_Response {
 		$exports = $this->export_service->get_recent_exports();
 
-		$user_id = get_current_user_id();
+		$user_id  = get_current_user_id();
 		$is_admin = current_user_can( 'manage_options' );
 
 		// Filter to user's own exports unless admin.
 		$filtered = array_filter( $exports, function ( $export ) use ( $user_id, $is_admin ) {
-			return $is_admin || (int) ( $export['user_id'] ?? 0 ) === $user_id;
+			return $is_admin || (int) ( $export[ 'user_id' ] ?? 0 ) === $user_id;
 		} );
 
 		// Remove file_path from each export.
 		$safe_exports = array_map( function ( $export ) {
-			unset( $export['file_path'] );
+			unset( $export[ 'file_path' ] );
 			return $export;
 		}, array_values( $filtered ) );
 
@@ -266,7 +266,7 @@ class ExportController extends WP_REST_Controller {
 		}
 
 		// Verify ownership.
-		if ( (int) $export['user_id'] !== get_current_user_id() && ! current_user_can( 'manage_options' ) ) {
+		if ( (int) $export[ 'user_id' ] !== get_current_user_id() && ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
 				__( 'You do not have permission to delete this export.', 'vmfa-folder-exporter' ),
@@ -298,7 +298,7 @@ class ExportController extends WP_REST_Controller {
 		}
 
 		// Verify ownership.
-		if ( (int) $export['user_id'] !== get_current_user_id() && ! current_user_can( 'manage_options' ) ) {
+		if ( (int) $export[ 'user_id' ] !== get_current_user_id() && ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
 				__( 'You do not have permission to download this export.', 'vmfa-folder-exporter' ),
@@ -306,7 +306,7 @@ class ExportController extends WP_REST_Controller {
 			);
 		}
 
-		if ( 'complete' !== $export['status'] ) {
+		if ( 'complete' !== $export[ 'status' ] ) {
 			return new WP_Error(
 				'not_ready',
 				__( 'Export is not yet complete.', 'vmfa-folder-exporter' ),
@@ -314,7 +314,7 @@ class ExportController extends WP_REST_Controller {
 			);
 		}
 
-		$file_path = $export['file_path'] ?? '';
+		$file_path = $export[ 'file_path' ] ?? '';
 		if ( empty( $file_path ) || ! file_exists( $file_path ) ) {
 			return new WP_Error(
 				'file_missing',
@@ -323,7 +323,7 @@ class ExportController extends WP_REST_Controller {
 			);
 		}
 
-		$file_name = $export['file_name'] ?? 'export.zip';
+		$file_name = $export[ 'file_name' ] ?? 'export.zip';
 
 		// Stream the file.
 		header( 'Content-Type: application/zip' );

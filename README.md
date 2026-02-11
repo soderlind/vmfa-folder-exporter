@@ -71,6 +71,8 @@ Navigate to **Media → Virtual Folders → Folder Exporter**. The dashboard pro
 ### WP-CLI
 
 ```bash
+wp vmfa-export folders                # List folders with IDs
+wp vmfa-export folders --format=json
 wp vmfa-export folder 42              # Export folder ID 42 as ZIP
 wp vmfa-export folder 42 --output=/tmp/photos.zip
 wp vmfa-export folder 42 --no-children
@@ -80,6 +82,8 @@ wp vmfa-export list --format=json
 wp vmfa-export clean                  # Remove expired exports
 wp vmfa-export clean --all            # Remove all exports
 ```
+
+Use `wp vmfa-export folders` to find the folder ID needed by `wp vmfa-export folder <id>`. The ID is also visible in the admin folder picker.
 
 ## Developer Documentation
 

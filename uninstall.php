@@ -28,8 +28,8 @@ foreach ( $option_names as $name ) {
 	$export = get_option( $name );
 
 	// Delete associated ZIP files.
-	if ( is_array( $export ) && ! empty( $export['file_path'] ) && file_exists( $export['file_path'] ) ) {
-		wp_delete_file( $export['file_path'] );
+	if ( is_array( $export ) && ! empty( $export[ 'file_path' ] ) && file_exists( $export[ 'file_path' ] ) ) {
+		wp_delete_file( $export[ 'file_path' ] );
 	}
 
 	delete_option( $name );
@@ -37,7 +37,7 @@ foreach ( $option_names as $name ) {
 
 // Remove the export directory.
 $upload_dir = wp_upload_dir();
-$export_dir = $upload_dir['basedir'] . '/vmfa-exports';
+$export_dir = $upload_dir[ 'basedir' ] . '/vmfa-exports';
 
 if ( is_dir( $export_dir ) ) {
 	// Remove protection and remaining files.

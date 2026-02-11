@@ -22,6 +22,9 @@ use WP_CLI\Utils;
  *
  * ## EXAMPLES
  *
+ *     # List available folders with IDs
+ *     wp vmfa-export folders
+ *
  *     # Export a folder with subfolders
  *     wp vmfa-export folder 42
  *
@@ -96,7 +99,7 @@ class ExportCommand {
 	 * @param array $assoc_args Named arguments.
 	 */
 	public function folder( array $args, array $assoc_args ): void {
-		$folder_id        = (int) $args[0];
+		$folder_id        = (int) $args[ 0 ];
 		$include_children = ! Utils\get_flag_value( $assoc_args, 'no-children', false );
 		$include_manifest = ! Utils\get_flag_value( $assoc_args, 'no-manifest', false );
 
@@ -196,18 +199,86 @@ class ExportCommand {
 
 		$items = array_map( function ( $export ) {
 			return array(
-				'job_id'     => $export['job_id'] ?? '',
-				'folder_id'  => $export['folder_id'] ?? '',
-				'status'     => $export['status'] ?? '',
-				'file_name'  => $export['file_name'] ?? '',
-				'file_size'  => isset( $export['file_size'] ) ? size_format( (int) $export['file_size'] ) : '',
-				'created_at' => $export['created_at'] ?? '',
+				'job_id'     => $export[ 'job_id' ] ?? '',
+				'folder_id'  => $export[ 'folder_id' ] ?? '',
+				'status'     => $export[ 'status' ] ?? '',
+				'file_name'  => $export[ 'file_name' ] ?? '',
+				'file_size'  => isset( $export[ 'file_size' ] ) ? size_format( (int) $export[ 'file_size' ] ) : '',
+				'created_at' => $export[ 'created_at' ] ?? '',
 			);
 		}, $exports );
 
 		$format = Utils\get_flag_value( $assoc_args, 'format', 'table' );
 
 		Utils\format_items( $format, $items, array( 'job_id', 'folder_id', 'status', 'file_name', 'file_size', 'created_at' ) );
+	}
+
+	/**
+	 * List available folders with their IDs.
+	 *
+	 * ## OPTIONS
+	 *
+	 * [--format=<format>]
+	 * : Output format. Accepts table, json, csv, yaml.
+	 * ---
+	 * default: table
+	 * options:
+	 *   - table
+	 *   - json
+	 *   - csv
+	 *   - yaml
+	 * ---
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     wp vmfa-export folders
+	 *     wp vmfa-export folders --format=json
+	 *
+	 * @param array $args       Positional arguments.
+	 * @param array $assoc_args Named arguments.
+	 */
+	public function folders( array $args, array $assoc_args ): void {
+		$terms = get_terms(
+			array(
+				'taxonomy'   => 'vmfo_folder',
+				'hide_empty' => false,
+				'orderby'    => 'name',
+				'order'      => 'ASC',
+			)
+		);
+
+		if ( is_wp_error( $terms ) || empty( $terms ) ) {
+			WP_CLI::log( 'No folders found.' );
+			return;
+		}
+
+		// Build a parent → path map for display.
+		$path_map = array();
+		foreach ( $terms as $term ) {
+			$ancestors = array_reverse( get_ancestors( $term->term_id, 'vmfo_folder', 'taxonomy' ) );
+			$parts     = array();
+			foreach ( $ancestors as $ancestor_id ) {
+				$ancestor = get_term( $ancestor_id, 'vmfo_folder' );
+				if ( $ancestor && ! is_wp_error( $ancestor ) ) {
+					$parts[] = $ancestor->name;
+				}
+			}
+			$parts[]                      = $term->name;
+			$path_map[ $term->term_id ] = implode( '/', $parts );
+		}
+
+		$items = array_map( function ( $term ) use ( $path_map ) {
+			return array(
+				'id'    => $term->term_id,
+				'name'  => $term->name,
+				'path'  => $path_map[ $term->term_id ] ?? $term->name,
+				'count' => $term->count,
+			);
+		}, $terms );
+
+		$format = Utils\get_flag_value( $assoc_args, 'format', 'table' );
+
+		Utils\format_items( $format, $items, array( 'id', 'name', 'path', 'count' ) );
 	}
 
 	/**

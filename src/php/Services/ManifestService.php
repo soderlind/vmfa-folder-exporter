@@ -89,15 +89,15 @@ class ManifestService {
 		$width  = 0;
 		$height = 0;
 		if ( is_array( $metadata ) ) {
-			$width  = $metadata['width'] ?? 0;
-			$height = $metadata['height'] ?? 0;
+			$width  = $metadata[ 'width' ] ?? 0;
+			$height = $metadata[ 'height' ] ?? 0;
 		}
 
 		// Get the folder path for this attachment.
 		$folder_path = '';
 		$terms       = wp_get_object_terms( $attachment->ID, 'vmfo_folder', array( 'fields' => 'ids' ) );
 		if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
-			$term_id     = (int) $terms[0];
+			$term_id     = (int) $terms[ 0 ];
 			$folder_path = $folder_paths[ $term_id ] ?? '';
 		}
 

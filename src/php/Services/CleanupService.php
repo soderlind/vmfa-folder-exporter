@@ -58,11 +58,11 @@ class CleanupService {
 		foreach ( $option_names as $name ) {
 			$export = get_option( $name );
 
-			if ( ! is_array( $export ) || ! isset( $export['created_at'] ) ) {
+			if ( ! is_array( $export ) || ! isset( $export[ 'created_at' ] ) ) {
 				continue;
 			}
 
-			$created = strtotime( $export['created_at'] );
+			$created = strtotime( $export[ 'created_at' ] );
 			if ( false === $created ) {
 				continue;
 			}
@@ -73,8 +73,8 @@ class CleanupService {
 			}
 
 			// Delete the ZIP file.
-			if ( ! empty( $export['file_path'] ) && file_exists( $export['file_path'] ) ) {
-				wp_delete_file( $export['file_path'] );
+			if ( ! empty( $export[ 'file_path' ] ) && file_exists( $export[ 'file_path' ] ) ) {
+				wp_delete_file( $export[ 'file_path' ] );
 			}
 
 			delete_option( $name );
@@ -105,8 +105,8 @@ class CleanupService {
 		foreach ( $option_names as $name ) {
 			$export = get_option( $name );
 
-			if ( is_array( $export ) && ! empty( $export['file_path'] ) && file_exists( $export['file_path'] ) ) {
-				wp_delete_file( $export['file_path'] );
+			if ( is_array( $export ) && ! empty( $export[ 'file_path' ] ) && file_exists( $export[ 'file_path' ] ) ) {
+				wp_delete_file( $export[ 'file_path' ] );
 			}
 
 			delete_option( $name );
@@ -115,7 +115,7 @@ class CleanupService {
 
 		// Remove the export directory.
 		$upload_dir = wp_upload_dir();
-		$export_dir = $upload_dir['basedir'] . '/' . ExportService::EXPORT_DIR;
+		$export_dir = $upload_dir[ 'basedir' ] . '/' . ExportService::EXPORT_DIR;
 
 		if ( is_dir( $export_dir ) ) {
 			// Remove protection files.

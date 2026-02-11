@@ -47,12 +47,12 @@ it( 'generates CSV with UTF-8 BOM and headers', function () {
 } );
 
 it( 'builds a row for an attachment', function () {
-	$attachment                  = new WP_Post();
-	$attachment->ID              = 42;
-	$attachment->post_excerpt    = 'A caption';
-	$attachment->post_content    = 'A description';
-	$attachment->post_mime_type  = 'image/jpeg';
-	$attachment->post_date       = '2025-06-15 10:30:00';
+	$attachment                 = new WP_Post();
+	$attachment->ID             = 42;
+	$attachment->post_excerpt   = 'A caption';
+	$attachment->post_content   = 'A description';
+	$attachment->post_mime_type = 'image/jpeg';
+	$attachment->post_date      = '2025-06-15 10:30:00';
 
 	Functions\when( 'wp_get_attachment_metadata' )->justReturn( array(
 		'width'  => 1920,
@@ -69,14 +69,14 @@ it( 'builds a row for an attachment', function () {
 	$row = $this->service->build_row( $attachment, $folder_paths );
 
 	expect( $row )->toBeArray()->toHaveCount( 12 );
-	expect( $row[0] )->toBe( 42 );           // ID.
-	expect( $row[1] )->toBe( 'test-image.jpg' ); // filename.
-	expect( $row[2] )->toBe( 'https://example.com/test-image.jpg' ); // url.
-	expect( $row[3] )->toBe( 'Alt text value' ); // alt_text.
-	expect( $row[4] )->toBe( 'A caption' );  // caption.
-	expect( $row[5] )->toBe( 'A description' ); // description.
-	expect( $row[6] )->toBe( 'image/jpeg' ); // mime_type.
-	expect( $row[8] )->toBe( 1920 );          // width.
-	expect( $row[9] )->toBe( 1080 );          // height.
-	expect( $row[11] )->toBe( 'Photos/Summer' ); // folder_path.
+	expect( $row[ 0 ] )->toBe( 42 );           // ID.
+	expect( $row[ 1 ] )->toBe( 'test-image.jpg' ); // filename.
+	expect( $row[ 2 ] )->toBe( 'https://example.com/test-image.jpg' ); // url.
+	expect( $row[ 3 ] )->toBe( 'Alt text value' ); // alt_text.
+	expect( $row[ 4 ] )->toBe( 'A caption' );  // caption.
+	expect( $row[ 5 ] )->toBe( 'A description' ); // description.
+	expect( $row[ 6 ] )->toBe( 'image/jpeg' ); // mime_type.
+	expect( $row[ 8 ] )->toBe( 1920 );          // width.
+	expect( $row[ 9 ] )->toBe( 1080 );          // height.
+	expect( $row[ 11 ] )->toBe( 'Photos/Summer' ); // folder_path.
 } );

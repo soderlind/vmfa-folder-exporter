@@ -12,7 +12,7 @@ use VmfaFolderExporter\Services\ManifestService;
 use Brain\Monkey\Functions;
 
 beforeEach( function () {
-	$this->manifest_service = Mockery::mock( ManifestService::class );
+	$this->manifest_service = Mockery::mock( ManifestService::class);
 	$this->service          = new ExportService( $this->manifest_service );
 } );
 
@@ -47,8 +47,8 @@ it( 'returns export metadata when exists', function () {
 	$result = $this->service->get_export( 'test-uuid' );
 
 	expect( $result )->toBeArray();
-	expect( $result['job_id'] )->toBe( 'test-uuid' );
-	expect( $result['status'] )->toBe( 'complete' );
+	expect( $result[ 'job_id' ] )->toBe( 'test-uuid' );
+	expect( $result[ 'status' ] )->toBe( 'complete' );
 } );
 
 it( 'builds folder path map from term IDs', function () {
@@ -61,8 +61,8 @@ it( 'builds folder path map from term IDs', function () {
 
 	Functions\when( 'get_term' )->alias( function ( int $term_id ) {
 		return match ( $term_id ) {
-			10 => (object) array( 'term_id' => 10, 'name' => 'Photos' ),
-			20 => (object) array( 'term_id' => 20, 'name' => 'Summer' ),
+			10      => (object) array( 'term_id'      => 10, 'name'      => 'Photos' ),
+			20      => (object) array( 'term_id'      => 20, 'name'      => 'Summer' ),
 			default => null,
 		};
 	} );
@@ -73,8 +73,8 @@ it( 'builds folder path map from term IDs', function () {
 	$map = $this->service->build_folder_path_map( array( 10, 20 ) );
 
 	expect( $map )->toBeArray()->toHaveCount( 2 );
-	expect( $map[10] )->toBe( 'Photos' );
-	expect( $map[20] )->toBe( 'Photos/Summer' );
+	expect( $map[ 10 ] )->toBe( 'Photos' );
+	expect( $map[ 20 ] )->toBe( 'Photos/Summer' );
 } );
 
 it( 'gets attachment folder ID', function () {
