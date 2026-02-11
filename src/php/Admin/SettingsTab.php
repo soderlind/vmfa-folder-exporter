@@ -128,13 +128,13 @@ class SettingsTab {
 		// Append file modification time to version hash to bust aggressive caches.
 		$js_file     = VMFA_FOLDER_EXPORTER_PATH . 'build/index.js';
 		$css_file    = VMFA_FOLDER_EXPORTER_PATH . 'build/index.css';
-		$js_version  = $asset['version'] . '.' . ( file_exists( $js_file ) ? filemtime( $js_file ) : '' );
-		$css_version = $asset['version'] . '.' . ( file_exists( $css_file ) ? filemtime( $css_file ) : '' );
+		$js_version  = $asset[ 'version' ] . '.' . ( file_exists( $js_file ) ? filemtime( $js_file ) : '' );
+		$css_version = $asset[ 'version' ] . '.' . ( file_exists( $css_file ) ? filemtime( $css_file ) : '' );
 
 		wp_enqueue_script(
 			'vmfa-folder-exporter-admin',
 			VMFA_FOLDER_EXPORTER_URL . 'build/index.js',
-			$asset['dependencies'],
+			$asset[ 'dependencies' ],
 			$js_version,
 			true
 		);

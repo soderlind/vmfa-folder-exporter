@@ -58,15 +58,15 @@ if ( ! function_exists( 'as_schedule_single_action' ) ) {
  */
 function init(): void {
 	// Update checker via GitHub releases.
-	if ( ! class_exists( \Soderlind\WordPress\GitHubUpdater::class ) ) {
+	if ( ! class_exists( \Soderlind\WordPress\GitHubUpdater::class) ) {
 		require_once __DIR__ . '/class-github-updater.php';
 	}
 	\Soderlind\WordPress\GitHubUpdater::init(
-		github_url:  'https://github.com/soderlind/vmfa-folder-exporter',
+		github_url: 'https://github.com/soderlind/vmfa-folder-exporter',
 		plugin_file: VMFA_FOLDER_EXPORTER_FILE,
 		plugin_slug: 'vmfa-folder-exporter',
-		name_regex:  '/vmfa-folder-exporter\.zip/',
-		branch:      'main',
+		name_regex: '/vmfa-folder-exporter\.zip/',
+		branch: 'main',
 	);
 
 	// Boot the plugin.

@@ -60,20 +60,20 @@ class ExportService {
 		update_option(
 			'vmfa_export_' . $job_id,
 			array(
-				'job_id'            => $job_id,
-				'folder_id'         => $folder_id,
-				'include_children'  => $include_children,
-				'include_manifest'  => $include_manifest,
-				'user_id'           => $user_id,
-				'status'            => 'pending',
-				'progress'          => 0,
-				'total'             => 0,
-				'file_path'         => '',
-				'file_name'         => '',
-				'file_size'         => 0,
-				'created_at'        => current_time( 'mysql', true ),
-				'completed_at'      => '',
-				'error'             => '',
+				'job_id'           => $job_id,
+				'folder_id'        => $folder_id,
+				'include_children' => $include_children,
+				'include_manifest' => $include_manifest,
+				'user_id'          => $user_id,
+				'status'           => 'pending',
+				'progress'         => 0,
+				'total'            => 0,
+				'file_path'        => '',
+				'file_name'        => '',
+				'file_size'        => 0,
+				'created_at'       => current_time( 'mysql', true ),
+				'completed_at'     => '',
+				'error'            => '',
 			),
 			false // Do not autoload.
 		);
@@ -103,8 +103,8 @@ class ExportService {
 	 * @return void
 	 */
 	public function process_export( string $job_id, int $folder_id, array $options ): void {
-		$include_children = $options['include_children'] ?? true;
-		$include_manifest = $options['include_manifest'] ?? true;
+		$include_children = $options[ 'include_children' ] ?? true;
+		$include_manifest = $options[ 'include_manifest' ] ?? true;
 
 		try {
 			$this->update_export_status( $job_id, 'processing' );
@@ -167,7 +167,7 @@ class ExportService {
 					'progress'     => $total,
 				)
 			);
-		} catch ( \Exception $e ) {
+		} catch (\Exception $e) {
 			$this->update_export_status( $job_id, 'failed', $e->getMessage() );
 		}
 	}
@@ -220,7 +220,7 @@ class ExportService {
 			$counter = 1;
 			while ( false !== $zip->locateName( $zip_path ) ) {
 				$info     = pathinfo( $filename );
-				$zip_path = $zip_dir . $info['filename'] . '-' . $counter . '.' . ( $info['extension'] ?? '' );
+				$zip_path = $zip_dir . $info[ 'filename' ] . '-' . $counter . '.' . ( $info[ 'extension' ] ?? '' );
 				++$counter;
 			}
 
@@ -314,7 +314,7 @@ class ExportService {
 			return null;
 		}
 
-		return (int) $terms[0];
+		return (int) $terms[ 0 ];
 	}
 
 	/**
@@ -348,7 +348,7 @@ class ExportService {
 		$exports = array();
 		foreach ( $option_names as $name ) {
 			$data = get_option( $name );
-			if ( is_array( $data ) && isset( $data['job_id'] ) ) {
+			if ( is_array( $data ) && isset( $data[ 'job_id' ] ) ) {
 				$exports[] = $data;
 			}
 		}
@@ -370,8 +370,8 @@ class ExportService {
 		}
 
 		// Delete the ZIP file if it exists.
-		if ( ! empty( $export['file_path'] ) && file_exists( $export['file_path'] ) ) {
-			wp_delete_file( $export['file_path'] );
+		if ( ! empty( $export[ 'file_path' ] ) && file_exists( $export[ 'file_path' ] ) ) {
+			wp_delete_file( $export[ 'file_path' ] );
 		}
 
 		return delete_option( 'vmfa_export_' . $job_id );
@@ -384,7 +384,7 @@ class ExportService {
 	 */
 	public function get_export_dir(): string|false {
 		$upload_dir = wp_upload_dir();
-		$export_dir = $upload_dir['basedir'] . '/' . self::EXPORT_DIR;
+		$export_dir = $upload_dir[ 'basedir' ] . '/' . self::EXPORT_DIR;
 
 		if ( ! file_exists( $export_dir ) ) {
 			if ( ! wp_mkdir_p( $export_dir ) ) {
@@ -412,7 +412,7 @@ class ExportService {
 	private function update_export_status( string $job_id, string $status, string $error = '' ): void {
 		$data = array( 'status' => $status );
 		if ( '' !== $error ) {
-			$data['error'] = $error;
+			$data[ 'error' ] = $error;
 		}
 		$this->update_export_meta( $job_id, $data );
 	}
@@ -510,7 +510,7 @@ class ExportService {
 			$counter = 1;
 			while ( false !== $zip->locateName( $zip_path ) ) {
 				$info     = pathinfo( $filename );
-				$zip_path = $zip_dir . $info['filename'] . '-' . $counter . '.' . ( $info['extension'] ?? '' );
+				$zip_path = $zip_dir . $info[ 'filename' ] . '-' . $counter . '.' . ( $info[ 'extension' ] ?? '' );
 				++$counter;
 			}
 
