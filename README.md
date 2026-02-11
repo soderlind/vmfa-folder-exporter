@@ -87,37 +87,7 @@ Use `wp vmfa-export folders` to find the folder ID needed by `wp vmfa-export fol
 
 ## Developer Documentation
 
-### Filters
-
-| Filter | Description |
-|--------|-------------|
-| `vmfa_export_manifest_columns` | Customise or add CSV manifest columns |
-
-### REST API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/vmfa-folder-exporter/v1/exports` | Start a new export |
-| `GET` | `/vmfa-folder-exporter/v1/exports` | List exports |
-| `GET` | `/vmfa-folder-exporter/v1/exports/{id}` | Get export status |
-| `DELETE` | `/vmfa-folder-exporter/v1/exports/{id}` | Delete an export |
-| `GET` | `/vmfa-folder-exporter/v1/exports/{id}/download` | Download ZIP |
-
-### Building
-
-```bash
-composer install
-npm install
-npm run build
-```
-
-### Testing
-
-```bash
-composer test       # PHP tests (Pest)
-npm test            # JS tests (Vitest)
-npm run lint        # Lint JS/CSS
-```
+See [docs/DEVELOPER.md](docs/DEVELOPER.md) for filters, REST API reference with examples, WP-CLI details, and build/test instructions.
 
 ## License
 

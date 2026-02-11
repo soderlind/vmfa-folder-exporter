@@ -384,7 +384,14 @@ class ExportService {
 	 */
 	public function get_export_dir(): string|false {
 		$upload_dir = wp_upload_dir();
-		$export_dir = $upload_dir[ 'basedir' ] . '/' . self::EXPORT_DIR;
+		$default    = $upload_dir[ 'basedir' ] . '/' . self::EXPORT_DIR;
+
+		/**
+		 * Filters the directory where export ZIP files are stored.
+		 *
+		 * @param string $export_dir Absolute path to the export directory.
+		 */
+		$export_dir = apply_filters( 'vmfa_export_dir', $default );
 
 		if ( ! file_exists( $export_dir ) ) {
 			if ( ! wp_mkdir_p( $export_dir ) ) {

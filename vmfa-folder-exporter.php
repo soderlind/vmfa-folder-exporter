@@ -3,7 +3,7 @@
  * Plugin Name:       Virtual Media Folders - Folder Exporter
  * Plugin URI:        https://github.com/soderlind/vmfa-folder-exporter
  * Description:       Export folders (or subtrees) as ZIP archives with optional CSV manifests. Add-on for Virtual Media Folders.
- * Version:           1.1.0
+ * Version:           1.1.1
  * Requires at least: 6.8
  * Requires PHP:      8.3
  * Requires Plugins:  virtual-media-folders
@@ -24,7 +24,7 @@ namespace VmfaFolderExporter;
 defined( 'ABSPATH' ) || exit;
 
 // Plugin constants.
-define( 'VMFA_FOLDER_EXPORTER_VERSION', '1.1.0' );
+define( 'VMFA_FOLDER_EXPORTER_VERSION', '1.1.1' );
 define( 'VMFA_FOLDER_EXPORTER_FILE', __FILE__ );
 define( 'VMFA_FOLDER_EXPORTER_PATH', plugin_dir_path( __FILE__ ) );
 define( 'VMFA_FOLDER_EXPORTER_URL', plugin_dir_url( __FILE__ ) );

@@ -37,7 +37,10 @@ foreach ( $option_names as $name ) {
 
 // Remove the export directory.
 $upload_dir = wp_upload_dir();
-$export_dir = $upload_dir[ 'basedir' ] . '/vmfa-exports';
+$default    = $upload_dir[ 'basedir' ] . '/vmfa-exports';
+
+/** This filter is documented in ExportService::get_export_dir(). */
+$export_dir = apply_filters( 'vmfa_export_dir', $default );
 
 if ( is_dir( $export_dir ) ) {
 	// Remove protection and remaining files.
