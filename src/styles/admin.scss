@@ -5,7 +5,7 @@
  */
 
 .vmfa-folder-exporter {
-	max-width: 800px;
+	max-width: 1200px;
 
 	h2 {
 		margin-top: 1.5em;
@@ -31,7 +31,7 @@
 	}
 
 	&__stat-value {
-		font-size: 28px;
+		font-size: 32px;
 		font-weight: 600;
 		color: #1d2327;
 		line-height: 1.2;
@@ -116,6 +116,24 @@
 	&__history-empty {
 		color: #50575e;
 		font-style: italic;
+	}
+
+	&__history-actions {
+		display: flex;
+		gap: 4px;
+
+		.components-button {
+			min-width: 0;
+			padding: 4px;
+
+			svg {
+				fill: currentColor;
+			}
+
+			&.is-destructive:hover {
+				color: #991b1b;
+			}
+		}
 	}
 
 	&__status {

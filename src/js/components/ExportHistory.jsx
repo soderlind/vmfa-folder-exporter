@@ -7,6 +7,7 @@
 import { useState, useEffect } from '@wordpress/element';
 import { Button, Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { download as downloadIcon, trash } from '@wordpress/icons';
 import apiFetch from '@wordpress/api-fetch';
 
 /**
@@ -127,24 +128,25 @@ export function ExportHistory({ refreshKey }) {
 							</td>
 							<td>{formatBytes(item.file_size)}</td>
 							<td>{item.created_at || '—'}</td>
-							<td>
+							<td className="vmfa-folder-exporter__history-actions">
 								{item.status === 'complete' && (
 									<Button
-										variant="link"
+										icon={downloadIcon}
+										label={__(
+											'Download',
+											'vmfa-folder-exporter'
+										)}
 										onClick={() =>
 											handleDownload(item.job_id)
 										}
-									>
-										{__('Download', 'vmfa-folder-exporter')}
-									</Button>
+									/>
 								)}
 								<Button
-									variant="link"
+									icon={trash}
+									label={__('Delete', 'vmfa-folder-exporter')}
 									isDestructive
 									onClick={() => handleDelete(item.job_id)}
-								>
-									{__('Delete', 'vmfa-folder-exporter')}
-								</Button>
+								/>
 							</td>
 						</tr>
 					))}

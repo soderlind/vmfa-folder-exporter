@@ -47,8 +47,8 @@ describe( 'ExportHistory', () => {
 
 		expect( screen.getByText( 'complete' ) ).toBeInTheDocument();
 		expect( screen.getByText( '1.0 MB' ) ).toBeInTheDocument();
-		expect( screen.getByText( /download/i ) ).toBeInTheDocument();
-		expect( screen.getByText( /delete/i ) ).toBeInTheDocument();
+		expect( screen.getByRole( 'button', { name: /download/i } ) ).toBeInTheDocument();
+		expect( screen.getByRole( 'button', { name: /delete/i } ) ).toBeInTheDocument();
 	} );
 
 	it( 'removes an export from the list on delete', async () => {
@@ -71,7 +71,7 @@ describe( 'ExportHistory', () => {
 			expect( screen.getByText( 'photos.zip' ) ).toBeInTheDocument();
 		} );
 
-		const deleteButton = screen.getByText( /delete/i );
+		const deleteButton = screen.getByRole( 'button', { name: /delete/i } );
 		await user.click( deleteButton );
 
 		await waitFor( () => {
