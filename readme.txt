@@ -2,9 +2,9 @@
 Contributors: PerS
 Tags: media, export, zip, folders, virtual-media-folders
 Requires at least: 6.8
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 8.3
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,9 @@ Yes. The ZIP contains the actual media files organised in the same folder hierar
 3. Export history with download and delete actions.
 
 == Changelog ==
+
+= 1.1.2 =
+* Changed: Tested up to WordPress 7.0
 
 = 1.1.1 =
 * Added `vmfa_export_dir` filter to change the export ZIP storage directory.
