@@ -1,0 +1,44 @@
+/**
+ * WP 7.0+ admin compatibility overrides for Folder Exporter.
+ *
+ * Loaded only on WordPress 7.0+ to align with the "Modern" default color
+ * scheme and the new design tokens.
+ *
+ * @since 1.1.0
+ * @package VmfaFolderExporter
+ */
+
+/* ==========================================================================
+   Theme color: use CSS custom properties from wp-base-styles
+   ========================================================================== */
+
+/* Progress bar fill */
+.vmfa-folder-exporter__progress-fill {
+	background: var(--wp-admin-theme-color);
+}
+
+/* Status badges with theme-aligned tones */
+.vmfa-folder-exporter__status--processing,
+.vmfa-folder-exporter__status--pending {
+	background: rgba(var(--wp-admin-theme-color--rgb), 0.1);
+	color: var(--wp-admin-theme-color);
+}
+
+/* ==========================================================================
+   Design-token alignment: backgrounds & borders
+   ========================================================================== */
+
+/* Progress bar track */
+.vmfa-folder-exporter__progress-bar {
+	background: #ddd;
+}
+
+/* Stat card borders */
+.vmfa-folder-exporter__stat-card {
+	border-color: #ddd;
+}
+
+/* Export panel border */
+.vmfa-folder-exporter__export-panel {
+	border-color: #ddd;
+}
