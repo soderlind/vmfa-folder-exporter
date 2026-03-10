@@ -163,5 +163,20 @@ class SettingsTab {
 				'folders' => Plugin::get_folders(),
 			)
 		);
+
+		// WP 7+ design-token overrides.
+		if ( function_exists( 'vmfo_is_wp7' ) && vmfo_is_wp7() ) {
+			$wp7_asset_file = VMFA_FOLDER_EXPORTER_PATH . 'build/wp7-compat.asset.php';
+			$wp7_version    = file_exists( $wp7_asset_file )
+				? ( include $wp7_asset_file )['version'] ?? VMFA_FOLDER_EXPORTER_VERSION
+				: VMFA_FOLDER_EXPORTER_VERSION;
+
+			wp_enqueue_style(
+				'vmfa-folder-exporter-wp7',
+				VMFA_FOLDER_EXPORTER_URL . 'build/wp7-compat.css',
+				[ 'vmfa-folder-exporter-admin', 'wp-base-styles' ],
+				$wp7_version
+			);
+		}
 	}
 }
