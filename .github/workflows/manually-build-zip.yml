@@ -29,7 +29,7 @@ jobs:
         run: |
           npm ci
           npm run build
-          composer install --no-dev
+          composer install --no-dev --optimize-autoloader
 
       - name: Archive Release
         uses: thedoctor0/zip-release@b57d897cb5d60cb78b51a507f63fa184cfe35554 #0.7.6
