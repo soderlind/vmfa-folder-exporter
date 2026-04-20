@@ -4,7 +4,7 @@ Tags: media, export, zip, folders, virtual-media-folders
 Requires at least: 6.8
 Tested up to: 7.0
 Requires PHP: 8.3
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,9 @@ Yes. The ZIP contains the actual media files organised in the same folder hierar
 3. Export history with download and delete actions.
 
 == Changelog ==
+
+= 1.3.1 =
+* Fixed: Deferred `schedule_cleanup()` to `init` hook to fix Action Scheduler warning
 
 = 1.3.0 =
 * Changed: Refactored Plugin class to extend VMF core `AbstractPlugin` base class
