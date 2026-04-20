@@ -65,9 +65,9 @@ final class Plugin extends AbstractPlugin {
 		// Action Scheduler hooks for background export processing.
 		add_action( 'vmfa_folder_exporter_build', array( $this->export_service, 'process_export' ), 10, 3 );
 
-		// Cleanup expired exports — schedule hourly.
+		// Cleanup expired exports — schedule hourly (defer to init to ensure AS data store is ready).
 		add_action( 'vmfa_folder_exporter_cleanup', array( $this->cleanup_service, 'cleanup_expired' ) );
-		$this->cleanup_service->schedule_cleanup();
+		add_action( 'init', array( $this->cleanup_service, 'schedule_cleanup' ), 20 );
 	}
 
 	/** @inheritDoc */
