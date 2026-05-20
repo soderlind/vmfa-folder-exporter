@@ -25,6 +25,10 @@ Add-on for [Virtual Media Folders](https://wordpress.org/plugins/virtual-media-f
 
 ## Installation
 
+Recommended: Use the [Add-On Manager](https://github.com/soderlind/vmfa) to install the add-on.
+
+Manual installation:
+
 1. Download [`vmfa-folder-exporter.zip`](https://github.com/soderlind/vmfa-folder-exporter/releases/latest/download/vmfa-folder-exporter.zip)
 2. Upload via `Plugins → Add New → Upload Plugin`
 3. Activate via `WordPress Admin → Plugins`
