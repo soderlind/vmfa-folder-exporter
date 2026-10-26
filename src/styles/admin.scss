@@ -160,21 +160,20 @@ $vmfa-radius-sm: var(--wpds-border-radius-sm);
 		font-size: 12px;
 		font-weight: 500;
 		text-transform: capitalize;
+		// Neutral text keeps AA contrast on every tinted badge background.
+		color: $vmfa-text;
 
 		&--complete {
 			background: $vmfa-success-bg;
-			color: $vmfa-success;
 		}
 
 		&--processing,
 		&--pending {
 			background: $vmfa-primary-tint;
-			color: $vmfa-primary;
 		}
 
 		&--failed {
 			background: $vmfa-danger-bg;
-			color: $vmfa-danger;
 		}
 	}
 }
