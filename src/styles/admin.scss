@@ -4,6 +4,23 @@
  * @package VmfaFolderExporter
  */
 
+// Colors use WordPress Design System tokens. VMF (2.2.0+) provides classic
+// WP 6.x values on older WordPress; the build adds WP 7 fallbacks for when
+// neither core nor VMF defines a token (postcss.config.js).
+$vmfa-primary: var(--wp-admin-theme-color, #2271b1);
+$vmfa-primary-tint: rgba(var(--wp-admin-theme-color--rgb, 34, 113, 177), 0.1);
+$vmfa-success: var(--wpds-color-foreground-content-success-weak);
+$vmfa-success-bg: var(--wpds-color-background-surface-success-weak);
+$vmfa-danger: var(--wpds-color-foreground-content-error-weak);
+$vmfa-danger-bg: var(--wpds-color-background-surface-error-weak);
+$vmfa-border: var(--wpds-color-stroke-surface-neutral);
+$vmfa-bg-white: var(--wpds-color-background-surface-neutral-strong);
+$vmfa-track: var(--wpds-color-background-interactive-neutral-weak-active);
+$vmfa-text: var(--wpds-color-foreground-content-neutral);
+$vmfa-text-muted: var(--wpds-color-foreground-content-neutral-weak);
+$vmfa-radius: var(--wpds-border-radius-md);
+$vmfa-radius-sm: var(--wpds-border-radius-sm);
+
 .vmfa-folder-exporter {
 	max-width: 1200px;
 
@@ -20,9 +37,9 @@
 	}
 
 	&__stat-card {
-		background: #fff;
-		border: 1px solid #c3c4c7;
-		border-radius: 4px;
+		background: $vmfa-bg-white;
+		border: 1px solid $vmfa-border;
+		border-radius: $vmfa-radius;
 		padding: 16px 24px;
 		display: flex;
 		flex-direction: column;
@@ -33,21 +50,21 @@
 	&__stat-value {
 		font-size: 32px;
 		font-weight: 600;
-		color: #1d2327;
+		color: $vmfa-text;
 		line-height: 1.2;
 	}
 
 	&__stat-label {
 		font-size: 13px;
-		color: #50575e;
+		color: $vmfa-text-muted;
 		margin-top: 4px;
 	}
 
 	// Export panel.
 	&__export-panel {
-		background: #fff;
-		border: 1px solid #c3c4c7;
-		border-radius: 4px;
+		background: $vmfa-bg-white;
+		border: 1px solid $vmfa-border;
+		border-radius: $vmfa-radius;
 		padding: 20px 24px;
 	}
 
@@ -82,7 +99,7 @@
 
 	&__progress-bar {
 		height: 20px;
-		background: #dcdcde;
+		background: $vmfa-track;
 		border-radius: 10px;
 		overflow: hidden;
 		margin-bottom: 8px;
@@ -90,7 +107,7 @@
 
 	&__progress-fill {
 		height: 100%;
-		background: #2271b1;
+		background: $vmfa-primary;
 		border-radius: 10px;
 		transition: width 0.3s ease;
 	}
@@ -100,7 +117,7 @@
 		align-items: center;
 		gap: 8px;
 		font-size: 13px;
-		color: #50575e;
+		color: $vmfa-text-muted;
 	}
 
 	&__progress-actions {
@@ -114,7 +131,7 @@
 	}
 
 	&__history-empty {
-		color: #50575e;
+		color: $vmfa-text-muted;
 		font-style: italic;
 	}
 
@@ -131,7 +148,7 @@
 			}
 
 			&.is-destructive:hover {
-				color: #991b1b;
+				color: $vmfa-danger;
 			}
 		}
 	}
@@ -139,25 +156,25 @@
 	&__status {
 		display: inline-block;
 		padding: 2px 8px;
-		border-radius: 3px;
+		border-radius: $vmfa-radius-sm;
 		font-size: 12px;
 		font-weight: 500;
 		text-transform: capitalize;
 
 		&--complete {
-			background: #d1fae5;
-			color: #065f46;
+			background: $vmfa-success-bg;
+			color: $vmfa-success;
 		}
 
 		&--processing,
 		&--pending {
-			background: #dbeafe;
-			color: #1e40af;
+			background: $vmfa-primary-tint;
+			color: $vmfa-primary;
 		}
 
 		&--failed {
-			background: #fee2e2;
-			color: #991b1b;
+			background: $vmfa-danger-bg;
+			color: $vmfa-danger;
 		}
 	}
 }
